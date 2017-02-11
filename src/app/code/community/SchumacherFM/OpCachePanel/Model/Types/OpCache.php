@@ -56,8 +56,11 @@ class SchumacherFM_OpCachePanel_Model_Types_OpCache extends SchumacherFM_OpCache
             return $this->_compiledFiles;
         }
         $status               = opcache_get_status();
-        $this->_compiledFiles = $status['scripts'];
-        return $this->_compiledFiles;
+        if (isset($status['scripts'])){
+            $this->_compiledFiles = $status['scripts'];
+            return $this->_compiledFiles;
+        }
+        return(FALSE);
     }
 
     /**
